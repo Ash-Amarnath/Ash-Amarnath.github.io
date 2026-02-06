@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Medication Extractor - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 3rem;
+        }
+        
+        h1 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+        }
+        
+        button {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #1e40af;
+            transform: scale(1.05);
+        }
+        
+        .results {
+            margin-top: 2rem;
+        }
+        
+        .result-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .result-card h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .entity {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .entity:last-child {
+            border-bottom: none;
+        }
+        
+        .entity-label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .entity-value {
+            color: #6b7280;
+        }
+        
+        .sample-note {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .sample-note button {
+            background: #f59e0b;
+            padding: 0.5rem 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .sample-note button:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
+        
+        <h1>Clinical Medication Extractor</h1>
+        <p class="subtitle">Extract medication names, dosages, and frequencies from clinical notes using NLP</p>
+        
+        <div class="sample-note">
+            <strong>💡 Try this sample note:</strong>
+            <button onclick="loadSampleNote()">Load Sample Clinical Note</button>
+        </div>
+        
+        <textarea id="noteInput" placeholder="Paste your clinical note here...
+
+Example:
+MEDICATIONS:
+Patient is currently taking Lamotrigine 200mg twice daily for seizure management.
+Warfarin 5mg once daily at bedtime.
+Metformin 500mg three times per day with meals."></textarea>
+        
+        <button onclick="extractMedications()">Extract Medications</button>
+        
+        <div id="results" class="results"></div>
+    </div>
+    
+    <script src="medextract.js"></script>
+</body>
+</html>
